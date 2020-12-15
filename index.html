@@ -1,0 +1,580 @@
+<!DOCTYPE html>
+<head>    
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+    
+        <script>
+            L_NO_TOUCH = false;
+            L_DISABLE_3D = false;
+        </script>
+    
+    <script src="https://cdn.jsdelivr.net/npm/leaflet@1.6.0/dist/leaflet.js"></script>
+    <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@1.6.0/dist/leaflet.css"/>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css"/>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.css"/>
+    <link rel="stylesheet" href="https://rawcdn.githack.com/python-visualization/folium/master/folium/templates/leaflet.awesome.rotate.css"/>
+    <style>html, body {width: 100%;height: 100%;margin: 0;padding: 0;}</style>
+    <style>#map {position:absolute;top:0;bottom:0;right:0;left:0;}</style>
+    
+            <meta name="viewport" content="width=device-width,
+                initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+            <style>
+                #map_16593118688842649b644627e00710cb {
+                    position: relative;
+                    width: 100.0%;
+                    height: 100.0%;
+                    left: 0.0%;
+                    top: 0.0%;
+                }
+            </style>
+        
+    <script src="https://unpkg.com/leaflet.featuregroup.subgroup@1.0.2/dist/leaflet.featuregroup.subgroup.js"></script>
+</head>
+<body>    
+    
+            <div class="folium-map" id="map_16593118688842649b644627e00710cb" ></div>
+        
+</body>
+<script>    
+    
+            var map_16593118688842649b644627e00710cb = L.map(
+                "map_16593118688842649b644627e00710cb",
+                {
+                    center: [60.79443, -149.199667],
+                    crs: L.CRS.EPSG3857,
+                    zoom: 11,
+                    zoomControl: true,
+                    preferCanvas: false,
+                }
+            );
+
+            
+
+        
+    
+            var tile_layer_4e9283fb41874423b0cd7ecd6901ed11 = L.tileLayer(
+                "http://server.arcgisonline.com/ArcGIS/rest/services/NatGeo_World_Map/MapServer/tile/{z}/{y}/{x}",
+                {"attribution": "USGS Style", "detectRetina": false, "maxNativeZoom": 18, "maxZoom": 18, "minZoom": 0, "noWrap": false, "opacity": 1, "subdomains": "abc", "tms": false}
+            ).addTo(map_16593118688842649b644627e00710cb);
+        
+    
+            var feature_group_eca6d8dcd33f4b1eb697ce3578cd867a = L.featureGroup(
+                {}
+            ).addTo(map_16593118688842649b644627e00710cb);
+        
+    
+            var feature_group_sub_group_abd2bbbe80654aad8d22dd4aebd3d48e = L.featureGroup.subGroup(
+                feature_group_eca6d8dcd33f4b1eb697ce3578cd867a
+            );
+            feature_group_sub_group_abd2bbbe80654aad8d22dd4aebd3d48e.addTo(map_16593118688842649b644627e00710cb);
+        
+    
+            var marker_13fddd50610c48aab183d9441b2fbd49 = L.marker(
+                [60.76556425853896, -149.2001819841309],
+                {}
+            ).addTo(feature_group_sub_group_abd2bbbe80654aad8d22dd4aebd3d48e);
+        
+    
+            var icon_3b1796cd6e894095837cf5f23400e1f2 = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "red", "prefix": "glyphicon"}
+            );
+            marker_13fddd50610c48aab183d9441b2fbd49.setIcon(icon_3b1796cd6e894095837cf5f23400e1f2);
+        
+    
+        var popup_a8465e856b8840f79c76bb23f1f2c27b = L.popup({"maxWidth": "100%"});
+
+        
+            var html_e4cc4f10446243109848520b794b76b7 = $(`<div id="html_e4cc4f10446243109848520b794b76b7" style="width: 100.0%; height: 100.0%;">Sunburst Meadows above Treeline <br>Eric Roberts <a href="https://www.cnfaic.org/observations/sunburst-meadows-above-treeline/" target="_blank">Link</a><img src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQEASABIAAD/2wBDAAEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQH/2wBDAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQH/wAARCAAoACgDASIAAhEBAxEB/8QAGwABAQACAwEAAAAAAAAAAAAAAAoCCAYHCwn/xAAxEAAABgMAAAMECQUAAAAAAAABAgMEBQYABwgJETISFCGRFSMxQVFSYYKzcoGSssH/xAAZAQACAwEAAAAAAAAAAAAAAAAGCAABBAf/xAAkEQABBAEFAAIDAQAAAAAAAAABAgMEBQYABxESIQgTFBUykf/aAAwDAQACEQMRAD8Av3EQAPMR8g+AfMfIPmIgAZ17rfbOs9wwbuy6tvdW2BX2E1LVx7MVKZZTceznoNx7pLw7pyyVVI3kY5x9W6aLCRZMRKPsiUxTDz9X0fuJ/uXPMUZ9B7u5039se66N2fctYWQuwbgLiQqc04jkJJNK0y5iNJ+LMKsLYY72hETRs/HyMeoPrbjnM9w9xW9vnKF2TWrsIVq7PalFh4NSowiphqQ6wlaS0+T+QsKZcWz24SQ8jghTx/DT4YTfmHF3ZgUeaxcOybAK7FLCkFrXOzaG5VfP37EmFavxHBPrAj9VHWxYRI1iWuzyXK6R3Qpr078ZN94XXir9v9NPoGobT5GtO16qs8ZRr3o/WEQ2otfiklHBW7iTt7S2OorX8yq1KZR7JEo1iipQGrdQIunSLoybc9IOFmNZNWZXWN21V+YIrnA4mQpENxKuAopH3IDT4SCOXYrshjnwOk8jS973bH5x8f8AOJ23+fnHFXkIFZXjWT0uSxHWO5Qh5z9ZLdnVanSkluDfQai0+sBxcBCFJUWMYwg1yDWCnp/en/IXJxfCU4M4/vWprZ05tfUVTv2y1N773aKzux1FrHWIKJp+wpZswVZVOZcnpjM7RukZ25l38Q7fJqFMuD5BFMpE6OlPSH9af8hcny431/d9seDX2XqzWRVT7I2Ww8RDX+vSouE2iw3i5E2FXKmCTtVRJNqoedkmCabg6qZETnKoY5ClEwBd3Ag2GWYsifDizUMVuSyWUS2GpCGpLcjHENvtodStKXkJcWEOABaO6upHOmW2wy7KsP2A35lYnkt9jEq2zPZSjs5WP20+nkz6aXXbwSJdVLkV78d5+ulPQ4rkmG4tUeQWGvtbWEga+pHNXcXIXTc4+oPO+0Iq1Slep7O6xcKlTbxR2Vj1meacVRlsbVK1zqVVh9panGdaDBttkaqXtVB9+VYNCToGkY0He5GTrcpbLpnUPVvhePeeoyxNozjjhPfdR6hYvqPaaaGjpvYlT5k17R+bb59PwsQlE7MRu2sLXMudcFMtJwsXrdWyOWqETJwb6TopwzAAHAAAHgA8Hng/weaWpSiolSiVKUSpSlEkqJPJJJ9JJ9JPpOmMYy9VrEwe0HkH5ij/AImA3/M0k4B5lt/J2h3uq7vOVywTS+2tw3lN/VzSR4sYe+XuUsMGgY0syj3QSCUS4aDKIg3O3aPzrs2zuQQbkfuWMxuwY7s6LYLSoyYTEyMwoKISlqcuI5IBQPFFSoUfqT6nqoD+joihZTcV+L32HxnmkUeS22O3VswqO0t56fizGQRqdbclSS6w2y1k1sHWmlJS+p1ouc/Q3xu2BQD7PP8AD4mMPyAREA/t+gfcGZYxmzQ7pjGMmpr/2Q=="></div>`)[0];
+            popup_a8465e856b8840f79c76bb23f1f2c27b.setContent(html_e4cc4f10446243109848520b794b76b7);
+        
+
+        marker_13fddd50610c48aab183d9441b2fbd49.bindPopup(popup_a8465e856b8840f79c76bb23f1f2c27b)
+        ;
+
+        
+    
+    
+            var marker_3e7bd66870d649a09f6dcbea56d93180 = L.marker(
+                [60.81812865495657, -149.19657709521485],
+                {}
+            ).addTo(feature_group_sub_group_abd2bbbe80654aad8d22dd4aebd3d48e);
+        
+    
+            var icon_b0bf03386c174d71881f616843af6c49 = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "red", "prefix": "glyphicon"}
+            );
+            marker_3e7bd66870d649a09f6dcbea56d93180.setIcon(icon_b0bf03386c174d71881f616843af6c49);
+        
+    
+        var popup_0a775446e48442e3b0264e00dff1ff07 = L.popup({"maxWidth": "100%"});
+
+        
+            var html_1faef529461d4847aa74032c82eeb60f = $(`<div id="html_1faef529461d4847aa74032c82eeb60f" style="width: 100.0%; height: 100.0%;">Motorized Uptrack / Repeat Offender <br>Troy Tempel <a href="https://www.cnfaic.org/observations/motorized-uptrack-repeat-offender/" target="_blank">Link</a><img src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQEASABIAAD/2wBDAAEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQH/2wBDAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQH/wAARCAAoACgDASIAAhEBAxEB/8QAGwABAQACAwEAAAAAAAAAAAAAAAoCCAYHCwn/xAAxEAAABgMAAAMECQUAAAAAAAABAgMEBQYABwgJETISFCGRFSMxQVFSYYKzcoGSssH/xAAZAQACAwEAAAAAAAAAAAAAAAAGCAABBAf/xAAkEQABBAEFAAIDAQAAAAAAAAABAgMEBQYABxESIQgTFBUykf/aAAwDAQACEQMRAD8Av3EQAPMR8g+AfMfIPmIgAZ17rfbOs9wwbuy6tvdW2BX2E1LVx7MVKZZTceznoNx7pLw7pyyVVI3kY5x9W6aLCRZMRKPsiUxTDz9X0fuJ/uXPMUZ9B7u5039se66N2fctYWQuwbgLiQqc04jkJJNK0y5iNJ+LMKsLYY72hETRs/HyMeoPrbjnM9w9xW9vnKF2TWrsIVq7PalFh4NSowiphqQ6wlaS0+T+QsKZcWz24SQ8jghTx/DT4YTfmHF3ZgUeaxcOybAK7FLCkFrXOzaG5VfP37EmFavxHBPrAj9VHWxYRI1iWuzyXK6R3Qpr078ZN94XXir9v9NPoGobT5GtO16qs8ZRr3o/WEQ2otfiklHBW7iTt7S2OorX8yq1KZR7JEo1iipQGrdQIunSLoybc9IOFmNZNWZXWN21V+YIrnA4mQpENxKuAopH3IDT4SCOXYrshjnwOk8jS973bH5x8f8AOJ23+fnHFXkIFZXjWT0uSxHWO5Qh5z9ZLdnVanSkluDfQai0+sBxcBCFJUWMYwg1yDWCnp/en/IXJxfCU4M4/vWprZ05tfUVTv2y1N773aKzux1FrHWIKJp+wpZswVZVOZcnpjM7RukZ25l38Q7fJqFMuD5BFMpE6OlPSH9af8hcny431/d9seDX2XqzWRVT7I2Ww8RDX+vSouE2iw3i5E2FXKmCTtVRJNqoedkmCabg6qZETnKoY5ClEwBd3Ag2GWYsifDizUMVuSyWUS2GpCGpLcjHENvtodStKXkJcWEOABaO6upHOmW2wy7KsP2A35lYnkt9jEq2zPZSjs5WP20+nkz6aXXbwSJdVLkV78d5+ulPQ4rkmG4tUeQWGvtbWEga+pHNXcXIXTc4+oPO+0Iq1Slep7O6xcKlTbxR2Vj1meacVRlsbVK1zqVVh9panGdaDBttkaqXtVB9+VYNCToGkY0He5GTrcpbLpnUPVvhePeeoyxNozjjhPfdR6hYvqPaaaGjpvYlT5k17R+bb59PwsQlE7MRu2sLXMudcFMtJwsXrdWyOWqETJwb6TopwzAAHAAAHgA8Hng/weaWpSiolSiVKUSpSlEkqJPJJJ9JJ9JPpOmMYy9VrEwe0HkH5ij/AImA3/M0k4B5lt/J2h3uq7vOVywTS+2tw3lN/VzSR4sYe+XuUsMGgY0syj3QSCUS4aDKIg3O3aPzrs2zuQQbkfuWMxuwY7s6LYLSoyYTEyMwoKISlqcuI5IBQPFFSoUfqT6nqoD+joihZTcV+L32HxnmkUeS22O3VswqO0t56fizGQRqdbclSS6w2y1k1sHWmlJS+p1ouc/Q3xu2BQD7PP8AD4mMPyAREA/t+gfcGZYxmzQ7pjGMmpr/2Q=="></div>`)[0];
+            popup_0a775446e48442e3b0264e00dff1ff07.setContent(html_1faef529461d4847aa74032c82eeb60f);
+        
+
+        marker_3e7bd66870d649a09f6dcbea56d93180.bindPopup(popup_0a775446e48442e3b0264e00dff1ff07)
+        ;
+
+        
+    
+    
+            var feature_group_sub_group_594d3da011ca4297b37be8e2e931d825 = L.featureGroup.subGroup(
+                feature_group_eca6d8dcd33f4b1eb697ce3578cd867a
+            );
+            feature_group_sub_group_594d3da011ca4297b37be8e2e931d825.addTo(map_16593118688842649b644627e00710cb);
+        
+    
+            var marker_dadeebd25c3f4d9f9d6d76b9ce19d6f9 = L.marker(
+                [60.79974931034601, -149.1187848273759],
+                {}
+            ).addTo(feature_group_sub_group_594d3da011ca4297b37be8e2e931d825);
+        
+    
+            var icon_d53717b1280e4a888e192a65eb638ab5 = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "green", "prefix": "glyphicon"}
+            );
+            marker_dadeebd25c3f4d9f9d6d76b9ce19d6f9.setIcon(icon_d53717b1280e4a888e192a65eb638ab5);
+        
+    
+        var popup_4de4b2eb85b045e7a9a19551e04ffd32 = L.popup({"maxWidth": "100%"});
+
+        
+            var html_28ff2e9f1ca3430890b33a59bddc76d9 = $(`<div id="html_28ff2e9f1ca3430890b33a59bddc76d9" style="width: 100.0%; height: 100.0%;">Eddie’s <br>Kakiko Ramos-Leon <a href="https://www.cnfaic.org/observations/eddies-111/" target="_blank">Link</a><img src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQEASABIAAD/2wBDAAEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQH/2wBDAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQH/wAARCAAoACgDASIAAhEBAxEB/8QAGwABAQACAwEAAAAAAAAAAAAAAAoCCAYHCwn/xAAxEAAABgMAAAMECQUAAAAAAAABAgMEBQYABwgJETISFCGRFSMxQVFSYYKzcoGSssH/xAAZAQACAwEAAAAAAAAAAAAAAAAGCAABBAf/xAAkEQABBAEFAAIDAQAAAAAAAAABAgMEBQYABxESIQgTFBUykf/aAAwDAQACEQMRAD8Av3EQAPMR8g+AfMfIPmIgAZ17rfbOs9wwbuy6tvdW2BX2E1LVx7MVKZZTceznoNx7pLw7pyyVVI3kY5x9W6aLCRZMRKPsiUxTDz9X0fuJ/uXPMUZ9B7u5039se66N2fctYWQuwbgLiQqc04jkJJNK0y5iNJ+LMKsLYY72hETRs/HyMeoPrbjnM9w9xW9vnKF2TWrsIVq7PalFh4NSowiphqQ6wlaS0+T+QsKZcWz24SQ8jghTx/DT4YTfmHF3ZgUeaxcOybAK7FLCkFrXOzaG5VfP37EmFavxHBPrAj9VHWxYRI1iWuzyXK6R3Qpr078ZN94XXir9v9NPoGobT5GtO16qs8ZRr3o/WEQ2otfiklHBW7iTt7S2OorX8yq1KZR7JEo1iipQGrdQIunSLoybc9IOFmNZNWZXWN21V+YIrnA4mQpENxKuAopH3IDT4SCOXYrshjnwOk8jS973bH5x8f8AOJ23+fnHFXkIFZXjWT0uSxHWO5Qh5z9ZLdnVanSkluDfQai0+sBxcBCFJUWMYwg1yDWCnp/en/IXJxfCU4M4/vWprZ05tfUVTv2y1N773aKzux1FrHWIKJp+wpZswVZVOZcnpjM7RukZ25l38Q7fJqFMuD5BFMpE6OlPSH9af8hcny431/d9seDX2XqzWRVT7I2Ww8RDX+vSouE2iw3i5E2FXKmCTtVRJNqoedkmCabg6qZETnKoY5ClEwBd3Ag2GWYsifDizUMVuSyWUS2GpCGpLcjHENvtodStKXkJcWEOABaO6upHOmW2wy7KsP2A35lYnkt9jEq2zPZSjs5WP20+nkz6aXXbwSJdVLkV78d5+ulPQ4rkmG4tUeQWGvtbWEga+pHNXcXIXTc4+oPO+0Iq1Slep7O6xcKlTbxR2Vj1meacVRlsbVK1zqVVh9panGdaDBttkaqXtVB9+VYNCToGkY0He5GTrcpbLpnUPVvhePeeoyxNozjjhPfdR6hYvqPaaaGjpvYlT5k17R+bb59PwsQlE7MRu2sLXMudcFMtJwsXrdWyOWqETJwb6TopwzAAHAAAHgA8Hng/weaWpSiolSiVKUSpSlEkqJPJJJ9JJ9JPpOmMYy9VrEwe0HkH5ij/AImA3/M0k4B5lt/J2h3uq7vOVywTS+2tw3lN/VzSR4sYe+XuUsMGgY0syj3QSCUS4aDKIg3O3aPzrs2zuQQbkfuWMxuwY7s6LYLSoyYTEyMwoKISlqcuI5IBQPFFSoUfqT6nqoD+joihZTcV+L32HxnmkUeS22O3VswqO0t56fizGQRqdbclSS6w2y1k1sHWmlJS+p1ouc/Q3xu2BQD7PP8AD4mMPyAREA/t+gfcGZYxmzQ7pjGMmpr/2Q=="></div>`)[0];
+            popup_4de4b2eb85b045e7a9a19551e04ffd32.setContent(html_28ff2e9f1ca3430890b33a59bddc76d9);
+        
+
+        marker_dadeebd25c3f4d9f9d6d76b9ce19d6f9.bindPopup(popup_4de4b2eb85b045e7a9a19551e04ffd32)
+        ;
+
+        
+    
+    
+            var marker_51f91a90f9874a16b1ff665bf0d02983 = L.marker(
+                [61.0094554405999, -149.10812857073978],
+                {}
+            ).addTo(feature_group_sub_group_594d3da011ca4297b37be8e2e931d825);
+        
+    
+            var icon_9ee711a9451e4549a7f211794615707c = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "green", "prefix": "glyphicon"}
+            );
+            marker_51f91a90f9874a16b1ff665bf0d02983.setIcon(icon_9ee711a9451e4549a7f211794615707c);
+        
+    
+        var popup_47debeab3d444660a61ccde36afea2f2 = L.popup({"maxWidth": "100%"});
+
+        
+            var html_464e7eb439534f209deacb213d101397 = $(`<div id="html_464e7eb439534f209deacb213d101397" style="width: 100.0%; height: 100.0%;">Raggedtop <br>Andrew Schauer /Alex Davis Forecaster<a href="https://www.cnfaic.org/observations/raggedtop-17/" target="_blank">Link</a><img src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQEASABIAAD/2wBDAAEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQH/2wBDAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQH/wAARCAAoACgDASIAAhEBAxEB/8QAGwABAQACAwEAAAAAAAAAAAAAAAoCCAYHCwn/xAAxEAAABgMAAAMECQUAAAAAAAABAgMEBQYABwgJETISFCGRFSMxQVFSYYKzcoGSssH/xAAZAQACAwEAAAAAAAAAAAAAAAAGCAABBAf/xAAkEQABBAEFAAIDAQAAAAAAAAABAgMEBQYABxESIQgTFBUykf/aAAwDAQACEQMRAD8Av3EQAPMR8g+AfMfIPmIgAZ17rfbOs9wwbuy6tvdW2BX2E1LVx7MVKZZTceznoNx7pLw7pyyVVI3kY5x9W6aLCRZMRKPsiUxTDz9X0fuJ/uXPMUZ9B7u5039se66N2fctYWQuwbgLiQqc04jkJJNK0y5iNJ+LMKsLYY72hETRs/HyMeoPrbjnM9w9xW9vnKF2TWrsIVq7PalFh4NSowiphqQ6wlaS0+T+QsKZcWz24SQ8jghTx/DT4YTfmHF3ZgUeaxcOybAK7FLCkFrXOzaG5VfP37EmFavxHBPrAj9VHWxYRI1iWuzyXK6R3Qpr078ZN94XXir9v9NPoGobT5GtO16qs8ZRr3o/WEQ2otfiklHBW7iTt7S2OorX8yq1KZR7JEo1iipQGrdQIunSLoybc9IOFmNZNWZXWN21V+YIrnA4mQpENxKuAopH3IDT4SCOXYrshjnwOk8jS973bH5x8f8AOJ23+fnHFXkIFZXjWT0uSxHWO5Qh5z9ZLdnVanSkluDfQai0+sBxcBCFJUWMYwg1yDWCnp/en/IXJxfCU4M4/vWprZ05tfUVTv2y1N773aKzux1FrHWIKJp+wpZswVZVOZcnpjM7RukZ25l38Q7fJqFMuD5BFMpE6OlPSH9af8hcny431/d9seDX2XqzWRVT7I2Ww8RDX+vSouE2iw3i5E2FXKmCTtVRJNqoedkmCabg6qZETnKoY5ClEwBd3Ag2GWYsifDizUMVuSyWUS2GpCGpLcjHENvtodStKXkJcWEOABaO6upHOmW2wy7KsP2A35lYnkt9jEq2zPZSjs5WP20+nkz6aXXbwSJdVLkV78d5+ulPQ4rkmG4tUeQWGvtbWEga+pHNXcXIXTc4+oPO+0Iq1Slep7O6xcKlTbxR2Vj1meacVRlsbVK1zqVVh9panGdaDBttkaqXtVB9+VYNCToGkY0He5GTrcpbLpnUPVvhePeeoyxNozjjhPfdR6hYvqPaaaGjpvYlT5k17R+bb59PwsQlE7MRu2sLXMudcFMtJwsXrdWyOWqETJwb6TopwzAAHAAAHgA8Hng/weaWpSiolSiVKUSpSlEkqJPJJJ9JJ9JPpOmMYy9VrEwe0HkH5ij/AImA3/M0k4B5lt/J2h3uq7vOVywTS+2tw3lN/VzSR4sYe+XuUsMGgY0syj3QSCUS4aDKIg3O3aPzrs2zuQQbkfuWMxuwY7s6LYLSoyYTEyMwoKISlqcuI5IBQPFFSoUfqT6nqoD+joihZTcV+L32HxnmkUeS22O3VswqO0t56fizGQRqdbclSS6w2y1k1sHWmlJS+p1ouc/Q3xu2BQD7PP8AD4mMPyAREA/t+gfcGZYxmzQ7pjGMmpr/2Q=="></div>`)[0];
+            popup_47debeab3d444660a61ccde36afea2f2.setContent(html_464e7eb439534f209deacb213d101397);
+        
+
+        marker_51f91a90f9874a16b1ff665bf0d02983.bindPopup(popup_47debeab3d444660a61ccde36afea2f2)
+        ;
+
+        
+    
+    
+            var marker_3bb3f619bbec4e13be57c8b4aa1be4c5 = L.marker(
+                [60.7945586415835, -149.19983866137696],
+                {}
+            ).addTo(feature_group_sub_group_594d3da011ca4297b37be8e2e931d825);
+        
+    
+            var icon_e6aa91b384314d1a8848be78f143d994 = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "green", "prefix": "glyphicon"}
+            );
+            marker_3bb3f619bbec4e13be57c8b4aa1be4c5.setIcon(icon_e6aa91b384314d1a8848be78f143d994);
+        
+    
+        var popup_23c12eaaac9546a794c2b1eea273070b = L.popup({"maxWidth": "100%"});
+
+        
+            var html_e8602353dac24f2dbb15d51e97b0b135 = $(`<div id="html_e8602353dac24f2dbb15d51e97b0b135" style="width: 100.0%; height: 100.0%;">Iditarod Trail from Center Ridge <br>Amy Holman <a href="https://www.cnfaic.org/observations/iditarod-trail-from-center-ridge/" target="_blank">Link</a><img src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQEASABIAAD/2wBDAAEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQH/2wBDAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQH/wAARCAAoACgDASIAAhEBAxEB/8QAGwABAQACAwEAAAAAAAAAAAAAAAoCCAYHCwn/xAAxEAAABgMAAAMECQUAAAAAAAABAgMEBQYABwgJETISFCGRFSMxQVFSYYKzcoGSssH/xAAZAQACAwEAAAAAAAAAAAAAAAAGCAABBAf/xAAkEQABBAEFAAIDAQAAAAAAAAABAgMEBQYABxESIQgTFBUykf/aAAwDAQACEQMRAD8Av3EQAPMR8g+AfMfIPmIgAZ17rfbOs9wwbuy6tvdW2BX2E1LVx7MVKZZTceznoNx7pLw7pyyVVI3kY5x9W6aLCRZMRKPsiUxTDz9X0fuJ/uXPMUZ9B7u5039se66N2fctYWQuwbgLiQqc04jkJJNK0y5iNJ+LMKsLYY72hETRs/HyMeoPrbjnM9w9xW9vnKF2TWrsIVq7PalFh4NSowiphqQ6wlaS0+T+QsKZcWz24SQ8jghTx/DT4YTfmHF3ZgUeaxcOybAK7FLCkFrXOzaG5VfP37EmFavxHBPrAj9VHWxYRI1iWuzyXK6R3Qpr078ZN94XXir9v9NPoGobT5GtO16qs8ZRr3o/WEQ2otfiklHBW7iTt7S2OorX8yq1KZR7JEo1iipQGrdQIunSLoybc9IOFmNZNWZXWN21V+YIrnA4mQpENxKuAopH3IDT4SCOXYrshjnwOk8jS973bH5x8f8AOJ23+fnHFXkIFZXjWT0uSxHWO5Qh5z9ZLdnVanSkluDfQai0+sBxcBCFJUWMYwg1yDWCnp/en/IXJxfCU4M4/vWprZ05tfUVTv2y1N773aKzux1FrHWIKJp+wpZswVZVOZcnpjM7RukZ25l38Q7fJqFMuD5BFMpE6OlPSH9af8hcny431/d9seDX2XqzWRVT7I2Ww8RDX+vSouE2iw3i5E2FXKmCTtVRJNqoedkmCabg6qZETnKoY5ClEwBd3Ag2GWYsifDizUMVuSyWUS2GpCGpLcjHENvtodStKXkJcWEOABaO6upHOmW2wy7KsP2A35lYnkt9jEq2zPZSjs5WP20+nkz6aXXbwSJdVLkV78d5+ulPQ4rkmG4tUeQWGvtbWEga+pHNXcXIXTc4+oPO+0Iq1Slep7O6xcKlTbxR2Vj1meacVRlsbVK1zqVVh9panGdaDBttkaqXtVB9+VYNCToGkY0He5GTrcpbLpnUPVvhePeeoyxNozjjhPfdR6hYvqPaaaGjpvYlT5k17R+bb59PwsQlE7MRu2sLXMudcFMtJwsXrdWyOWqETJwb6TopwzAAHAAAHgA8Hng/weaWpSiolSiVKUSpSlEkqJPJJJ9JJ9JPpOmMYy9VrEwe0HkH5ij/AImA3/M0k4B5lt/J2h3uq7vOVywTS+2tw3lN/VzSR4sYe+XuUsMGgY0syj3QSCUS4aDKIg3O3aPzrs2zuQQbkfuWMxuwY7s6LYLSoyYTEyMwoKISlqcuI5IBQPFFSoUfqT6nqoD+joihZTcV+L32HxnmkUeS22O3VswqO0t56fizGQRqdbclSS6w2y1k1sHWmlJS+p1ouc/Q3xu2BQD7PP8AD4mMPyAREA/t+gfcGZYxmzQ7pjGMmpr/2Q=="></div>`)[0];
+            popup_23c12eaaac9546a794c2b1eea273070b.setContent(html_e8602353dac24f2dbb15d51e97b0b135);
+        
+
+        marker_3bb3f619bbec4e13be57c8b4aa1be4c5.bindPopup(popup_23c12eaaac9546a794c2b1eea273070b)
+        ;
+
+        
+    
+    
+            var feature_group_sub_group_5f2caede76a849b8ab718973638e6ef9 = L.featureGroup.subGroup(
+                feature_group_eca6d8dcd33f4b1eb697ce3578cd867a
+            );
+            feature_group_sub_group_5f2caede76a849b8ab718973638e6ef9.addTo(map_16593118688842649b644627e00710cb);
+        
+    
+            var marker_2ff2e6e608b740e5b176ce86da2e9caf = L.marker(
+                [60.4785949341317, -149.4644983701172],
+                {}
+            ).addTo(feature_group_sub_group_5f2caede76a849b8ab718973638e6ef9);
+        
+    
+            var icon_178435e80527454aa3efbd17a4c80396 = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "blue", "prefix": "glyphicon"}
+            );
+            marker_2ff2e6e608b740e5b176ce86da2e9caf.setIcon(icon_178435e80527454aa3efbd17a4c80396);
+        
+    
+        var popup_4d9af94891834857ad23b08a7dae8d43 = L.popup({"maxWidth": "100%"});
+
+        
+            var html_55ee7a71cdf44a70bb860820a5c01b27 = $(`<div id="html_55ee7a71cdf44a70bb860820a5c01b27" style="width: 100.0%; height: 100.0%;">Carter-Crescent <br>Troy Tempel <a href="https://www.cnfaic.org/observations/carter-crescent/" target="_blank">Link</a><img src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQEASABIAAD/2wBDAAEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQH/2wBDAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQH/wAARCAAoACgDASIAAhEBAxEB/8QAGwABAQACAwEAAAAAAAAAAAAAAAoCCAYHCwn/xAAxEAAABgMAAAMECQUAAAAAAAABAgMEBQYABwgJETISFCGRFSMxQVFSYYKzcoGSssH/xAAZAQACAwEAAAAAAAAAAAAAAAAGCAABBAf/xAAkEQABBAEFAAIDAQAAAAAAAAABAgMEBQYABxESIQgTFBUykf/aAAwDAQACEQMRAD8Av3EQAPMR8g+AfMfIPmIgAZ17rfbOs9wwbuy6tvdW2BX2E1LVx7MVKZZTceznoNx7pLw7pyyVVI3kY5x9W6aLCRZMRKPsiUxTDz9X0fuJ/uXPMUZ9B7u5039se66N2fctYWQuwbgLiQqc04jkJJNK0y5iNJ+LMKsLYY72hETRs/HyMeoPrbjnM9w9xW9vnKF2TWrsIVq7PalFh4NSowiphqQ6wlaS0+T+QsKZcWz24SQ8jghTx/DT4YTfmHF3ZgUeaxcOybAK7FLCkFrXOzaG5VfP37EmFavxHBPrAj9VHWxYRI1iWuzyXK6R3Qpr078ZN94XXir9v9NPoGobT5GtO16qs8ZRr3o/WEQ2otfiklHBW7iTt7S2OorX8yq1KZR7JEo1iipQGrdQIunSLoybc9IOFmNZNWZXWN21V+YIrnA4mQpENxKuAopH3IDT4SCOXYrshjnwOk8jS973bH5x8f8AOJ23+fnHFXkIFZXjWT0uSxHWO5Qh5z9ZLdnVanSkluDfQai0+sBxcBCFJUWMYwg1yDWCnp/en/IXJxfCU4M4/vWprZ05tfUVTv2y1N773aKzux1FrHWIKJp+wpZswVZVOZcnpjM7RukZ25l38Q7fJqFMuD5BFMpE6OlPSH9af8hcny431/d9seDX2XqzWRVT7I2Ww8RDX+vSouE2iw3i5E2FXKmCTtVRJNqoedkmCabg6qZETnKoY5ClEwBd3Ag2GWYsifDizUMVuSyWUS2GpCGpLcjHENvtodStKXkJcWEOABaO6upHOmW2wy7KsP2A35lYnkt9jEq2zPZSjs5WP20+nkz6aXXbwSJdVLkV78d5+ulPQ4rkmG4tUeQWGvtbWEga+pHNXcXIXTc4+oPO+0Iq1Slep7O6xcKlTbxR2Vj1meacVRlsbVK1zqVVh9panGdaDBttkaqXtVB9+VYNCToGkY0He5GTrcpbLpnUPVvhePeeoyxNozjjhPfdR6hYvqPaaaGjpvYlT5k17R+bb59PwsQlE7MRu2sLXMudcFMtJwsXrdWyOWqETJwb6TopwzAAHAAAHgA8Hng/weaWpSiolSiVKUSpSlEkqJPJJJ9JJ9JPpOmMYy9VrEwe0HkH5ij/AImA3/M0k4B5lt/J2h3uq7vOVywTS+2tw3lN/VzSR4sYe+XuUsMGgY0syj3QSCUS4aDKIg3O3aPzrs2zuQQbkfuWMxuwY7s6LYLSoyYTEyMwoKISlqcuI5IBQPFFSoUfqT6nqoD+joihZTcV+L32HxnmkUeS22O3VswqO0t56fizGQRqdbclSS6w2y1k1sHWmlJS+p1ouc/Q3xu2BQD7PP8AD4mMPyAREA/t+gfcGZYxmzQ7pjGMmpr/2Q=="></div>`)[0];
+            popup_4d9af94891834857ad23b08a7dae8d43.setContent(html_55ee7a71cdf44a70bb860820a5c01b27);
+        
+
+        marker_2ff2e6e608b740e5b176ce86da2e9caf.bindPopup(popup_4d9af94891834857ad23b08a7dae8d43)
+        ;
+
+        
+    
+    
+            var marker_de632d7faee04facab1202af866f2fad = L.marker(
+                [60.9876708130369, -149.01427271289066],
+                {}
+            ).addTo(feature_group_sub_group_5f2caede76a849b8ab718973638e6ef9);
+        
+    
+            var icon_527bc114fdc2442c96c445ed1e128f04 = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "blue", "prefix": "glyphicon"}
+            );
+            marker_de632d7faee04facab1202af866f2fad.setIcon(icon_527bc114fdc2442c96c445ed1e128f04);
+        
+    
+        var popup_46a5469058114c0b8bd797336187bb71 = L.popup({"maxWidth": "100%"});
+
+        
+            var html_c06dfde77a934242bc729b29d2c2a8bd = $(`<div id="html_c06dfde77a934242bc729b29d2c2a8bd" style="width: 100.0%; height: 100.0%;">Notch Mountain <br>Alan Abel <a href="https://www.cnfaic.org/observations/notch-mountain-5/" target="_blank">Link</a><img src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQEASABIAAD/2wBDAAEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQH/2wBDAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQH/wAARCAAoACgDASIAAhEBAxEB/8QAGwABAQACAwEAAAAAAAAAAAAAAAoCCAYHCwn/xAAxEAAABgMAAAMECQUAAAAAAAABAgMEBQYABwgJETISFCGRFSMxQVFSYYKzcoGSssH/xAAZAQACAwEAAAAAAAAAAAAAAAAGCAABBAf/xAAkEQABBAEFAAIDAQAAAAAAAAABAgMEBQYABxESIQgTFBUykf/aAAwDAQACEQMRAD8Av3EQAPMR8g+AfMfIPmIgAZ17rfbOs9wwbuy6tvdW2BX2E1LVx7MVKZZTceznoNx7pLw7pyyVVI3kY5x9W6aLCRZMRKPsiUxTDz9X0fuJ/uXPMUZ9B7u5039se66N2fctYWQuwbgLiQqc04jkJJNK0y5iNJ+LMKsLYY72hETRs/HyMeoPrbjnM9w9xW9vnKF2TWrsIVq7PalFh4NSowiphqQ6wlaS0+T+QsKZcWz24SQ8jghTx/DT4YTfmHF3ZgUeaxcOybAK7FLCkFrXOzaG5VfP37EmFavxHBPrAj9VHWxYRI1iWuzyXK6R3Qpr078ZN94XXir9v9NPoGobT5GtO16qs8ZRr3o/WEQ2otfiklHBW7iTt7S2OorX8yq1KZR7JEo1iipQGrdQIunSLoybc9IOFmNZNWZXWN21V+YIrnA4mQpENxKuAopH3IDT4SCOXYrshjnwOk8jS973bH5x8f8AOJ23+fnHFXkIFZXjWT0uSxHWO5Qh5z9ZLdnVanSkluDfQai0+sBxcBCFJUWMYwg1yDWCnp/en/IXJxfCU4M4/vWprZ05tfUVTv2y1N773aKzux1FrHWIKJp+wpZswVZVOZcnpjM7RukZ25l38Q7fJqFMuD5BFMpE6OlPSH9af8hcny431/d9seDX2XqzWRVT7I2Ww8RDX+vSouE2iw3i5E2FXKmCTtVRJNqoedkmCabg6qZETnKoY5ClEwBd3Ag2GWYsifDizUMVuSyWUS2GpCGpLcjHENvtodStKXkJcWEOABaO6upHOmW2wy7KsP2A35lYnkt9jEq2zPZSjs5WP20+nkz6aXXbwSJdVLkV78d5+ulPQ4rkmG4tUeQWGvtbWEga+pHNXcXIXTc4+oPO+0Iq1Slep7O6xcKlTbxR2Vj1meacVRlsbVK1zqVVh9panGdaDBttkaqXtVB9+VYNCToGkY0He5GTrcpbLpnUPVvhePeeoyxNozjjhPfdR6hYvqPaaaGjpvYlT5k17R+bb59PwsQlE7MRu2sLXMudcFMtJwsXrdWyOWqETJwb6TopwzAAHAAAHgA8Hng/weaWpSiolSiVKUSpSlEkqJPJJJ9JJ9JPpOmMYy9VrEwe0HkH5ij/AImA3/M0k4B5lt/J2h3uq7vOVywTS+2tw3lN/VzSR4sYe+XuUsMGgY0syj3QSCUS4aDKIg3O3aPzrs2zuQQbkfuWMxuwY7s6LYLSoyYTEyMwoKISlqcuI5IBQPFFSoUfqT6nqoD+joihZTcV+L32HxnmkUeS22O3VswqO0t56fizGQRqdbclSS6w2y1k1sHWmlJS+p1ouc/Q3xu2BQD7PP8AD4mMPyAREA/t+gfcGZYxmzQ7pjGMmpr/2Q=="></div>`)[0];
+            popup_46a5469058114c0b8bd797336187bb71.setContent(html_c06dfde77a934242bc729b29d2c2a8bd);
+        
+
+        marker_de632d7faee04facab1202af866f2fad.bindPopup(popup_46a5469058114c0b8bd797336187bb71)
+        ;
+
+        
+    
+    
+            var marker_5e23bb6a3b6042c8a489a232e080bc62 = L.marker(
+                [60.64328, -149.498144],
+                {}
+            ).addTo(feature_group_sub_group_5f2caede76a849b8ab718973638e6ef9);
+        
+    
+            var icon_ba735a1b0d2948d78d31e8de59480562 = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "blue", "prefix": "glyphicon"}
+            );
+            marker_5e23bb6a3b6042c8a489a232e080bc62.setIcon(icon_ba735a1b0d2948d78d31e8de59480562);
+        
+    
+        var popup_76f021fcf5264a748f1861391dba5b73 = L.popup({"maxWidth": "100%"});
+
+        
+            var html_b0e21b758dbb42fba0b4a8481b7b68e2 = $(`<div id="html_b0e21b758dbb42fba0b4a8481b7b68e2" style="width: 100.0%; height: 100.0%;">Manitoba <br>Brock Roden <a href="https://www.cnfaic.org/observations/manitoba-71/" target="_blank">Link</a><img src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQEASABIAAD/2wBDAAEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQH/2wBDAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQH/wAARCAAoACgDASIAAhEBAxEB/8QAGwABAQACAwEAAAAAAAAAAAAAAAoCCAYHCwn/xAAxEAAABgMAAAMECQUAAAAAAAABAgMEBQYABwgJETISFCGRFSMxQVFSYYKzcoGSssH/xAAZAQACAwEAAAAAAAAAAAAAAAAGCAABBAf/xAAkEQABBAEFAAIDAQAAAAAAAAABAgMEBQYABxESIQgTFBUykf/aAAwDAQACEQMRAD8Av3EQAPMR8g+AfMfIPmIgAZ17rfbOs9wwbuy6tvdW2BX2E1LVx7MVKZZTceznoNx7pLw7pyyVVI3kY5x9W6aLCRZMRKPsiUxTDz9X0fuJ/uXPMUZ9B7u5039se66N2fctYWQuwbgLiQqc04jkJJNK0y5iNJ+LMKsLYY72hETRs/HyMeoPrbjnM9w9xW9vnKF2TWrsIVq7PalFh4NSowiphqQ6wlaS0+T+QsKZcWz24SQ8jghTx/DT4YTfmHF3ZgUeaxcOybAK7FLCkFrXOzaG5VfP37EmFavxHBPrAj9VHWxYRI1iWuzyXK6R3Qpr078ZN94XXir9v9NPoGobT5GtO16qs8ZRr3o/WEQ2otfiklHBW7iTt7S2OorX8yq1KZR7JEo1iipQGrdQIunSLoybc9IOFmNZNWZXWN21V+YIrnA4mQpENxKuAopH3IDT4SCOXYrshjnwOk8jS973bH5x8f8AOJ23+fnHFXkIFZXjWT0uSxHWO5Qh5z9ZLdnVanSkluDfQai0+sBxcBCFJUWMYwg1yDWCnp/en/IXJxfCU4M4/vWprZ05tfUVTv2y1N773aKzux1FrHWIKJp+wpZswVZVOZcnpjM7RukZ25l38Q7fJqFMuD5BFMpE6OlPSH9af8hcny431/d9seDX2XqzWRVT7I2Ww8RDX+vSouE2iw3i5E2FXKmCTtVRJNqoedkmCabg6qZETnKoY5ClEwBd3Ag2GWYsifDizUMVuSyWUS2GpCGpLcjHENvtodStKXkJcWEOABaO6upHOmW2wy7KsP2A35lYnkt9jEq2zPZSjs5WP20+nkz6aXXbwSJdVLkV78d5+ulPQ4rkmG4tUeQWGvtbWEga+pHNXcXIXTc4+oPO+0Iq1Slep7O6xcKlTbxR2Vj1meacVRlsbVK1zqVVh9panGdaDBttkaqXtVB9+VYNCToGkY0He5GTrcpbLpnUPVvhePeeoyxNozjjhPfdR6hYvqPaaaGjpvYlT5k17R+bb59PwsQlE7MRu2sLXMudcFMtJwsXrdWyOWqETJwb6TopwzAAHAAAHgA8Hng/weaWpSiolSiVKUSpSlEkqJPJJJ9JJ9JPpOmMYy9VrEwe0HkH5ij/AImA3/M0k4B5lt/J2h3uq7vOVywTS+2tw3lN/VzSR4sYe+XuUsMGgY0syj3QSCUS4aDKIg3O3aPzrs2zuQQbkfuWMxuwY7s6LYLSoyYTEyMwoKISlqcuI5IBQPFFSoUfqT6nqoD+joihZTcV+L32HxnmkUeS22O3VswqO0t56fizGQRqdbclSS6w2y1k1sHWmlJS+p1ouc/Q3xu2BQD7PP8AD4mMPyAREA/t+gfcGZYxmzQ7pjGMmpr/2Q=="></div>`)[0];
+            popup_76f021fcf5264a748f1861391dba5b73.setContent(html_b0e21b758dbb42fba0b4a8481b7b68e2);
+        
+
+        marker_5e23bb6a3b6042c8a489a232e080bc62.bindPopup(popup_76f021fcf5264a748f1861391dba5b73)
+        ;
+
+        
+    
+    
+            var marker_9c1e100a778042859198505973e2b7fc = L.marker(
+                [60.7851132086412, -149.15692331713868],
+                {}
+            ).addTo(feature_group_sub_group_5f2caede76a849b8ab718973638e6ef9);
+        
+    
+            var icon_a3054eead2b74ba6bb228b7afc8adb5a = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "blue", "prefix": "glyphicon"}
+            );
+            marker_9c1e100a778042859198505973e2b7fc.setIcon(icon_a3054eead2b74ba6bb228b7afc8adb5a);
+        
+    
+        var popup_1e9a886814a047dd9b95c0dd0a634aba = L.popup({"maxWidth": "100%"});
+
+        
+            var html_e7f9e26d8bec4a5cabea7b6398427277 = $(`<div id="html_e7f9e26d8bec4a5cabea7b6398427277" style="width: 100.0%; height: 100.0%;">Tincan Alpine <br>Eric Roberts <a href="https://www.cnfaic.org/observations/tincan-alpine-4/" target="_blank">Link</a><img src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQEASABIAAD/2wBDAAEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQH/2wBDAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQH/wAARCAAoACgDASIAAhEBAxEB/8QAGwABAQACAwEAAAAAAAAAAAAAAAoCCAYHCwn/xAAxEAAABgMAAAMECQUAAAAAAAABAgMEBQYABwgJETISFCGRFSMxQVFSYYKzcoGSssH/xAAZAQACAwEAAAAAAAAAAAAAAAAGCAABBAf/xAAkEQABBAEFAAIDAQAAAAAAAAABAgMEBQYABxESIQgTFBUykf/aAAwDAQACEQMRAD8Av3EQAPMR8g+AfMfIPmIgAZ17rfbOs9wwbuy6tvdW2BX2E1LVx7MVKZZTceznoNx7pLw7pyyVVI3kY5x9W6aLCRZMRKPsiUxTDz9X0fuJ/uXPMUZ9B7u5039se66N2fctYWQuwbgLiQqc04jkJJNK0y5iNJ+LMKsLYY72hETRs/HyMeoPrbjnM9w9xW9vnKF2TWrsIVq7PalFh4NSowiphqQ6wlaS0+T+QsKZcWz24SQ8jghTx/DT4YTfmHF3ZgUeaxcOybAK7FLCkFrXOzaG5VfP37EmFavxHBPrAj9VHWxYRI1iWuzyXK6R3Qpr078ZN94XXir9v9NPoGobT5GtO16qs8ZRr3o/WEQ2otfiklHBW7iTt7S2OorX8yq1KZR7JEo1iipQGrdQIunSLoybc9IOFmNZNWZXWN21V+YIrnA4mQpENxKuAopH3IDT4SCOXYrshjnwOk8jS973bH5x8f8AOJ23+fnHFXkIFZXjWT0uSxHWO5Qh5z9ZLdnVanSkluDfQai0+sBxcBCFJUWMYwg1yDWCnp/en/IXJxfCU4M4/vWprZ05tfUVTv2y1N773aKzux1FrHWIKJp+wpZswVZVOZcnpjM7RukZ25l38Q7fJqFMuD5BFMpE6OlPSH9af8hcny431/d9seDX2XqzWRVT7I2Ww8RDX+vSouE2iw3i5E2FXKmCTtVRJNqoedkmCabg6qZETnKoY5ClEwBd3Ag2GWYsifDizUMVuSyWUS2GpCGpLcjHENvtodStKXkJcWEOABaO6upHOmW2wy7KsP2A35lYnkt9jEq2zPZSjs5WP20+nkz6aXXbwSJdVLkV78d5+ulPQ4rkmG4tUeQWGvtbWEga+pHNXcXIXTc4+oPO+0Iq1Slep7O6xcKlTbxR2Vj1meacVRlsbVK1zqVVh9panGdaDBttkaqXtVB9+VYNCToGkY0He5GTrcpbLpnUPVvhePeeoyxNozjjhPfdR6hYvqPaaaGjpvYlT5k17R+bb59PwsQlE7MRu2sLXMudcFMtJwsXrdWyOWqETJwb6TopwzAAHAAAHgA8Hng/weaWpSiolSiVKUSpSlEkqJPJJJ9JJ9JPpOmMYy9VrEwe0HkH5ij/AImA3/M0k4B5lt/J2h3uq7vOVywTS+2tw3lN/VzSR4sYe+XuUsMGgY0syj3QSCUS4aDKIg3O3aPzrs2zuQQbkfuWMxuwY7s6LYLSoyYTEyMwoKISlqcuI5IBQPFFSoUfqT6nqoD+joihZTcV+L32HxnmkUeS22O3VswqO0t56fizGQRqdbclSS6w2y1k1sHWmlJS+p1ouc/Q3xu2BQD7PP8AD4mMPyAREA/t+gfcGZYxmzQ7pjGMmpr/2Q=="></div>`)[0];
+            popup_1e9a886814a047dd9b95c0dd0a634aba.setContent(html_e7f9e26d8bec4a5cabea7b6398427277);
+        
+
+        marker_9c1e100a778042859198505973e2b7fc.bindPopup(popup_1e9a886814a047dd9b95c0dd0a634aba)
+        ;
+
+        
+    
+    
+            var marker_d2e17598c30d4817a62813c2bfa03d97 = L.marker(
+                [61.76257866548563, -149.27944630688478],
+                {}
+            ).addTo(feature_group_sub_group_5f2caede76a849b8ab718973638e6ef9);
+        
+    
+            var icon_36936a77714d4e2b85e84d5387fce2bf = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "blue", "prefix": "glyphicon"}
+            );
+            marker_d2e17598c30d4817a62813c2bfa03d97.setIcon(icon_36936a77714d4e2b85e84d5387fce2bf);
+        
+    
+        var popup_a4e779115b854b8fa218c1fccf25dcfe = L.popup({"maxWidth": "100%"});
+
+        
+            var html_f20cef306b0e48fa84a73bd5a31deac1 = $(`<div id="html_f20cef306b0e48fa84a73bd5a31deac1" style="width: 100.0%; height: 100.0%;">Valley of Sin <br>Joe Stock <a href="https://www.cnfaic.org/observations/valley-of-sin-2/" target="_blank">Link</a><img src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQEASABIAAD/2wBDAAEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQH/2wBDAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQH/wAARCAAoACgDASIAAhEBAxEB/8QAGwABAQACAwEAAAAAAAAAAAAAAAoCCAYHCwn/xAAxEAAABgMAAAMECQUAAAAAAAABAgMEBQYABwgJETISFCGRFSMxQVFSYYKzcoGSssH/xAAZAQACAwEAAAAAAAAAAAAAAAAGCAABBAf/xAAkEQABBAEFAAIDAQAAAAAAAAABAgMEBQYABxESIQgTFBUykf/aAAwDAQACEQMRAD8Av3EQAPMR8g+AfMfIPmIgAZ17rfbOs9wwbuy6tvdW2BX2E1LVx7MVKZZTceznoNx7pLw7pyyVVI3kY5x9W6aLCRZMRKPsiUxTDz9X0fuJ/uXPMUZ9B7u5039se66N2fctYWQuwbgLiQqc04jkJJNK0y5iNJ+LMKsLYY72hETRs/HyMeoPrbjnM9w9xW9vnKF2TWrsIVq7PalFh4NSowiphqQ6wlaS0+T+QsKZcWz24SQ8jghTx/DT4YTfmHF3ZgUeaxcOybAK7FLCkFrXOzaG5VfP37EmFavxHBPrAj9VHWxYRI1iWuzyXK6R3Qpr078ZN94XXir9v9NPoGobT5GtO16qs8ZRr3o/WEQ2otfiklHBW7iTt7S2OorX8yq1KZR7JEo1iipQGrdQIunSLoybc9IOFmNZNWZXWN21V+YIrnA4mQpENxKuAopH3IDT4SCOXYrshjnwOk8jS973bH5x8f8AOJ23+fnHFXkIFZXjWT0uSxHWO5Qh5z9ZLdnVanSkluDfQai0+sBxcBCFJUWMYwg1yDWCnp/en/IXJxfCU4M4/vWprZ05tfUVTv2y1N773aKzux1FrHWIKJp+wpZswVZVOZcnpjM7RukZ25l38Q7fJqFMuD5BFMpE6OlPSH9af8hcny431/d9seDX2XqzWRVT7I2Ww8RDX+vSouE2iw3i5E2FXKmCTtVRJNqoedkmCabg6qZETnKoY5ClEwBd3Ag2GWYsifDizUMVuSyWUS2GpCGpLcjHENvtodStKXkJcWEOABaO6upHOmW2wy7KsP2A35lYnkt9jEq2zPZSjs5WP20+nkz6aXXbwSJdVLkV78d5+ulPQ4rkmG4tUeQWGvtbWEga+pHNXcXIXTc4+oPO+0Iq1Slep7O6xcKlTbxR2Vj1meacVRlsbVK1zqVVh9panGdaDBttkaqXtVB9+VYNCToGkY0He5GTrcpbLpnUPVvhePeeoyxNozjjhPfdR6hYvqPaaaGjpvYlT5k17R+bb59PwsQlE7MRu2sLXMudcFMtJwsXrdWyOWqETJwb6TopwzAAHAAAHgA8Hng/weaWpSiolSiVKUSpSlEkqJPJJJ9JJ9JPpOmMYy9VrEwe0HkH5ij/AImA3/M0k4B5lt/J2h3uq7vOVywTS+2tw3lN/VzSR4sYe+XuUsMGgY0syj3QSCUS4aDKIg3O3aPzrs2zuQQbkfuWMxuwY7s6LYLSoyYTEyMwoKISlqcuI5IBQPFFSoUfqT6nqoD+joihZTcV+L32HxnmkUeS22O3VswqO0t56fizGQRqdbclSS6w2y1k1sHWmlJS+p1ouc/Q3xu2BQD7PP8AD4mMPyAREA/t+gfcGZYxmzQ7pjGMmpr/2Q=="></div>`)[0];
+            popup_a4e779115b854b8fa218c1fccf25dcfe.setContent(html_f20cef306b0e48fa84a73bd5a31deac1);
+        
+
+        marker_d2e17598c30d4817a62813c2bfa03d97.bindPopup(popup_a4e779115b854b8fa218c1fccf25dcfe)
+        ;
+
+        
+    
+    
+            var marker_887db253d63e443da150c0e85c52c05c = L.marker(
+                [60.79443, -149.199667],
+                {}
+            ).addTo(feature_group_sub_group_5f2caede76a849b8ab718973638e6ef9);
+        
+    
+            var icon_1454cb63124841a8adb08f068b2315f1 = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "blue", "prefix": "glyphicon"}
+            );
+            marker_887db253d63e443da150c0e85c52c05c.setIcon(icon_1454cb63124841a8adb08f068b2315f1);
+        
+    
+        var popup_cf06cd3610f34cc58624fc7f3bcf42d7 = L.popup({"maxWidth": "100%"});
+
+        
+            var html_2f029bac49f9439daae9a034b83734f3 = $(`<div id="html_2f029bac49f9439daae9a034b83734f3" style="width: 100.0%; height: 100.0%;">Lynx Creek <br>Schauer / Wagner <a href="https://www.cnfaic.org/observations/lynx-creek-20/" target="_blank">Link</a><img src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQEASABIAAD/2wBDAAEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQH/2wBDAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQH/wAARCAAoACgDASIAAhEBAxEB/8QAGwABAQACAwEAAAAAAAAAAAAAAAoCCAYHCwn/xAAxEAAABgMAAAMECQUAAAAAAAABAgMEBQYABwgJETISFCGRFSMxQVFSYYKzcoGSssH/xAAZAQACAwEAAAAAAAAAAAAAAAAGCAABBAf/xAAkEQABBAEFAAIDAQAAAAAAAAABAgMEBQYABxESIQgTFBUykf/aAAwDAQACEQMRAD8Av3EQAPMR8g+AfMfIPmIgAZ17rfbOs9wwbuy6tvdW2BX2E1LVx7MVKZZTceznoNx7pLw7pyyVVI3kY5x9W6aLCRZMRKPsiUxTDz9X0fuJ/uXPMUZ9B7u5039se66N2fctYWQuwbgLiQqc04jkJJNK0y5iNJ+LMKsLYY72hETRs/HyMeoPrbjnM9w9xW9vnKF2TWrsIVq7PalFh4NSowiphqQ6wlaS0+T+QsKZcWz24SQ8jghTx/DT4YTfmHF3ZgUeaxcOybAK7FLCkFrXOzaG5VfP37EmFavxHBPrAj9VHWxYRI1iWuzyXK6R3Qpr078ZN94XXir9v9NPoGobT5GtO16qs8ZRr3o/WEQ2otfiklHBW7iTt7S2OorX8yq1KZR7JEo1iipQGrdQIunSLoybc9IOFmNZNWZXWN21V+YIrnA4mQpENxKuAopH3IDT4SCOXYrshjnwOk8jS973bH5x8f8AOJ23+fnHFXkIFZXjWT0uSxHWO5Qh5z9ZLdnVanSkluDfQai0+sBxcBCFJUWMYwg1yDWCnp/en/IXJxfCU4M4/vWprZ05tfUVTv2y1N773aKzux1FrHWIKJp+wpZswVZVOZcnpjM7RukZ25l38Q7fJqFMuD5BFMpE6OlPSH9af8hcny431/d9seDX2XqzWRVT7I2Ww8RDX+vSouE2iw3i5E2FXKmCTtVRJNqoedkmCabg6qZETnKoY5ClEwBd3Ag2GWYsifDizUMVuSyWUS2GpCGpLcjHENvtodStKXkJcWEOABaO6upHOmW2wy7KsP2A35lYnkt9jEq2zPZSjs5WP20+nkz6aXXbwSJdVLkV78d5+ulPQ4rkmG4tUeQWGvtbWEga+pHNXcXIXTc4+oPO+0Iq1Slep7O6xcKlTbxR2Vj1meacVRlsbVK1zqVVh9panGdaDBttkaqXtVB9+VYNCToGkY0He5GTrcpbLpnUPVvhePeeoyxNozjjhPfdR6hYvqPaaaGjpvYlT5k17R+bb59PwsQlE7MRu2sLXMudcFMtJwsXrdWyOWqETJwb6TopwzAAHAAAHgA8Hng/weaWpSiolSiVKUSpSlEkqJPJJJ9JJ9JPpOmMYy9VrEwe0HkH5ij/AImA3/M0k4B5lt/J2h3uq7vOVywTS+2tw3lN/VzSR4sYe+XuUsMGgY0syj3QSCUS4aDKIg3O3aPzrs2zuQQbkfuWMxuwY7s6LYLSoyYTEyMwoKISlqcuI5IBQPFFSoUfqT6nqoD+joihZTcV+L32HxnmkUeS22O3VswqO0t56fizGQRqdbclSS6w2y1k1sHWmlJS+p1ouc/Q3xu2BQD7PP8AD4mMPyAREA/t+gfcGZYxmzQ7pjGMmpr/2Q=="></div>`)[0];
+            popup_cf06cd3610f34cc58624fc7f3bcf42d7.setContent(html_2f029bac49f9439daae9a034b83734f3);
+        
+
+        marker_887db253d63e443da150c0e85c52c05c.bindPopup(popup_cf06cd3610f34cc58624fc7f3bcf42d7)
+        ;
+
+        
+    
+    
+            var marker_51136e74a3d547e991a0e9ff1b88aaf2 = L.marker(
+                [60.64328, -149.498144],
+                {}
+            ).addTo(feature_group_sub_group_5f2caede76a849b8ab718973638e6ef9);
+        
+    
+            var icon_0fb8dfea593147fb80ff0d943ac53db4 = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "blue", "prefix": "glyphicon"}
+            );
+            marker_51136e74a3d547e991a0e9ff1b88aaf2.setIcon(icon_0fb8dfea593147fb80ff0d943ac53db4);
+        
+    
+        var popup_a525c5e55b764b3abae012578e1c2671 = L.popup({"maxWidth": "100%"});
+
+        
+            var html_9a508ac9f45444af991dc9a05d854a3d = $(`<div id="html_9a508ac9f45444af991dc9a05d854a3d" style="width: 100.0%; height: 100.0%;">SE Summit Pass <br>Anonymous<a href="https://www.cnfaic.org/observations/se-summit-pass/" target="_blank">Link</a><img src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQEASABIAAD/2wBDAAEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQH/2wBDAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQH/wAARCAAoACgDASIAAhEBAxEB/8QAGwABAQACAwEAAAAAAAAAAAAAAAoCCAYHCwn/xAAxEAAABgMAAAMECQUAAAAAAAABAgMEBQYABwgJETISFCGRFSMxQVFSYYKzcoGSssH/xAAZAQACAwEAAAAAAAAAAAAAAAAGCAABBAf/xAAkEQABBAEFAAIDAQAAAAAAAAABAgMEBQYABxESIQgTFBUykf/aAAwDAQACEQMRAD8Av3EQAPMR8g+AfMfIPmIgAZ17rfbOs9wwbuy6tvdW2BX2E1LVx7MVKZZTceznoNx7pLw7pyyVVI3kY5x9W6aLCRZMRKPsiUxTDz9X0fuJ/uXPMUZ9B7u5039se66N2fctYWQuwbgLiQqc04jkJJNK0y5iNJ+LMKsLYY72hETRs/HyMeoPrbjnM9w9xW9vnKF2TWrsIVq7PalFh4NSowiphqQ6wlaS0+T+QsKZcWz24SQ8jghTx/DT4YTfmHF3ZgUeaxcOybAK7FLCkFrXOzaG5VfP37EmFavxHBPrAj9VHWxYRI1iWuzyXK6R3Qpr078ZN94XXir9v9NPoGobT5GtO16qs8ZRr3o/WEQ2otfiklHBW7iTt7S2OorX8yq1KZR7JEo1iipQGrdQIunSLoybc9IOFmNZNWZXWN21V+YIrnA4mQpENxKuAopH3IDT4SCOXYrshjnwOk8jS973bH5x8f8AOJ23+fnHFXkIFZXjWT0uSxHWO5Qh5z9ZLdnVanSkluDfQai0+sBxcBCFJUWMYwg1yDWCnp/en/IXJxfCU4M4/vWprZ05tfUVTv2y1N773aKzux1FrHWIKJp+wpZswVZVOZcnpjM7RukZ25l38Q7fJqFMuD5BFMpE6OlPSH9af8hcny431/d9seDX2XqzWRVT7I2Ww8RDX+vSouE2iw3i5E2FXKmCTtVRJNqoedkmCabg6qZETnKoY5ClEwBd3Ag2GWYsifDizUMVuSyWUS2GpCGpLcjHENvtodStKXkJcWEOABaO6upHOmW2wy7KsP2A35lYnkt9jEq2zPZSjs5WP20+nkz6aXXbwSJdVLkV78d5+ulPQ4rkmG4tUeQWGvtbWEga+pHNXcXIXTc4+oPO+0Iq1Slep7O6xcKlTbxR2Vj1meacVRlsbVK1zqVVh9panGdaDBttkaqXtVB9+VYNCToGkY0He5GTrcpbLpnUPVvhePeeoyxNozjjhPfdR6hYvqPaaaGjpvYlT5k17R+bb59PwsQlE7MRu2sLXMudcFMtJwsXrdWyOWqETJwb6TopwzAAHAAAHgA8Hng/weaWpSiolSiVKUSpSlEkqJPJJJ9JJ9JPpOmMYy9VrEwe0HkH5ij/AImA3/M0k4B5lt/J2h3uq7vOVywTS+2tw3lN/VzSR4sYe+XuUsMGgY0syj3QSCUS4aDKIg3O3aPzrs2zuQQbkfuWMxuwY7s6LYLSoyYTEyMwoKISlqcuI5IBQPFFSoUfqT6nqoD+joihZTcV+L32HxnmkUeS22O3VswqO0t56fizGQRqdbclSS6w2y1k1sHWmlJS+p1ouc/Q3xu2BQD7PP8AD4mMPyAREA/t+gfcGZYxmzQ7pjGMmpr/2Q=="></div>`)[0];
+            popup_a525c5e55b764b3abae012578e1c2671.setContent(html_9a508ac9f45444af991dc9a05d854a3d);
+        
+
+        marker_51136e74a3d547e991a0e9ff1b88aaf2.bindPopup(popup_a525c5e55b764b3abae012578e1c2671)
+        ;
+
+        
+    
+    
+            var marker_63758cb4ac1042418eedce18305fd68a = L.marker(
+                [60.64328, -149.498144],
+                {}
+            ).addTo(feature_group_sub_group_5f2caede76a849b8ab718973638e6ef9);
+        
+    
+            var icon_0977bae54f7b44809b8797ba7aa88991 = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "blue", "prefix": "glyphicon"}
+            );
+            marker_63758cb4ac1042418eedce18305fd68a.setIcon(icon_0977bae54f7b44809b8797ba7aa88991);
+        
+    
+        var popup_382098f1ad25477db89d9390ee3963b7 = L.popup({"maxWidth": "100%"});
+
+        
+            var html_406dd9872cb14267819c6bf8782c784f = $(`<div id="html_406dd9872cb14267819c6bf8782c784f" style="width: 100.0%; height: 100.0%;">South – Summit Lake <br>Daniel Krueger <a href="https://www.cnfaic.org/observations/south-summit-lake-2/" target="_blank">Link</a><img src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQEASABIAAD/2wBDAAEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQH/2wBDAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQH/wAARCAAoACgDASIAAhEBAxEB/8QAGwABAQACAwEAAAAAAAAAAAAAAAoCCAYHCwn/xAAxEAAABgMAAAMECQUAAAAAAAABAgMEBQYABwgJETISFCGRFSMxQVFSYYKzcoGSssH/xAAZAQACAwEAAAAAAAAAAAAAAAAGCAABBAf/xAAkEQABBAEFAAIDAQAAAAAAAAABAgMEBQYABxESIQgTFBUykf/aAAwDAQACEQMRAD8Av3EQAPMR8g+AfMfIPmIgAZ17rfbOs9wwbuy6tvdW2BX2E1LVx7MVKZZTceznoNx7pLw7pyyVVI3kY5x9W6aLCRZMRKPsiUxTDz9X0fuJ/uXPMUZ9B7u5039se66N2fctYWQuwbgLiQqc04jkJJNK0y5iNJ+LMKsLYY72hETRs/HyMeoPrbjnM9w9xW9vnKF2TWrsIVq7PalFh4NSowiphqQ6wlaS0+T+QsKZcWz24SQ8jghTx/DT4YTfmHF3ZgUeaxcOybAK7FLCkFrXOzaG5VfP37EmFavxHBPrAj9VHWxYRI1iWuzyXK6R3Qpr078ZN94XXir9v9NPoGobT5GtO16qs8ZRr3o/WEQ2otfiklHBW7iTt7S2OorX8yq1KZR7JEo1iipQGrdQIunSLoybc9IOFmNZNWZXWN21V+YIrnA4mQpENxKuAopH3IDT4SCOXYrshjnwOk8jS973bH5x8f8AOJ23+fnHFXkIFZXjWT0uSxHWO5Qh5z9ZLdnVanSkluDfQai0+sBxcBCFJUWMYwg1yDWCnp/en/IXJxfCU4M4/vWprZ05tfUVTv2y1N773aKzux1FrHWIKJp+wpZswVZVOZcnpjM7RukZ25l38Q7fJqFMuD5BFMpE6OlPSH9af8hcny431/d9seDX2XqzWRVT7I2Ww8RDX+vSouE2iw3i5E2FXKmCTtVRJNqoedkmCabg6qZETnKoY5ClEwBd3Ag2GWYsifDizUMVuSyWUS2GpCGpLcjHENvtodStKXkJcWEOABaO6upHOmW2wy7KsP2A35lYnkt9jEq2zPZSjs5WP20+nkz6aXXbwSJdVLkV78d5+ulPQ4rkmG4tUeQWGvtbWEga+pHNXcXIXTc4+oPO+0Iq1Slep7O6xcKlTbxR2Vj1meacVRlsbVK1zqVVh9panGdaDBttkaqXtVB9+VYNCToGkY0He5GTrcpbLpnUPVvhePeeoyxNozjjhPfdR6hYvqPaaaGjpvYlT5k17R+bb59PwsQlE7MRu2sLXMudcFMtJwsXrdWyOWqETJwb6TopwzAAHAAAHgA8Hng/weaWpSiolSiVKUSpSlEkqJPJJJ9JJ9JPpOmMYy9VrEwe0HkH5ij/AImA3/M0k4B5lt/J2h3uq7vOVywTS+2tw3lN/VzSR4sYe+XuUsMGgY0syj3QSCUS4aDKIg3O3aPzrs2zuQQbkfuWMxuwY7s6LYLSoyYTEyMwoKISlqcuI5IBQPFFSoUfqT6nqoD+joihZTcV+L32HxnmkUeS22O3VswqO0t56fizGQRqdbclSS6w2y1k1sHWmlJS+p1ouc/Q3xu2BQD7PP8AD4mMPyAREA/t+gfcGZYxmzQ7pjGMmpr/2Q=="></div>`)[0];
+            popup_382098f1ad25477db89d9390ee3963b7.setContent(html_406dd9872cb14267819c6bf8782c784f);
+        
+
+        marker_63758cb4ac1042418eedce18305fd68a.bindPopup(popup_382098f1ad25477db89d9390ee3963b7)
+        ;
+
+        
+    
+    
+            var marker_e05208c67e4044928ab247925d12d9d4 = L.marker(
+                [60.79443, -149.199667],
+                {}
+            ).addTo(feature_group_sub_group_5f2caede76a849b8ab718973638e6ef9);
+        
+    
+            var icon_30fe421e4d634e0b9b257e83142344d0 = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "blue", "prefix": "glyphicon"}
+            );
+            marker_e05208c67e4044928ab247925d12d9d4.setIcon(icon_30fe421e4d634e0b9b257e83142344d0);
+        
+    
+        var popup_71b65843c5b741a79fc7739bfda99101 = L.popup({"maxWidth": "100%"});
+
+        
+            var html_a7634d2ac83c4e1d9ecd1654589b2639 = $(`<div id="html_a7634d2ac83c4e1d9ecd1654589b2639" style="width: 100.0%; height: 100.0%;">Sunburst <br>Heather Johnson <a href="https://www.cnfaic.org/observations/sunburst-235/" target="_blank">Link</a><img src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQEASABIAAD/2wBDAAEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQH/2wBDAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQH/wAARCAAoACgDASIAAhEBAxEB/8QAGwABAQACAwEAAAAAAAAAAAAAAAoCCAYHCwn/xAAxEAAABgMAAAMECQUAAAAAAAABAgMEBQYABwgJETISFCGRFSMxQVFSYYKzcoGSssH/xAAZAQACAwEAAAAAAAAAAAAAAAAGCAABBAf/xAAkEQABBAEFAAIDAQAAAAAAAAABAgMEBQYABxESIQgTFBUykf/aAAwDAQACEQMRAD8Av3EQAPMR8g+AfMfIPmIgAZ17rfbOs9wwbuy6tvdW2BX2E1LVx7MVKZZTceznoNx7pLw7pyyVVI3kY5x9W6aLCRZMRKPsiUxTDz9X0fuJ/uXPMUZ9B7u5039se66N2fctYWQuwbgLiQqc04jkJJNK0y5iNJ+LMKsLYY72hETRs/HyMeoPrbjnM9w9xW9vnKF2TWrsIVq7PalFh4NSowiphqQ6wlaS0+T+QsKZcWz24SQ8jghTx/DT4YTfmHF3ZgUeaxcOybAK7FLCkFrXOzaG5VfP37EmFavxHBPrAj9VHWxYRI1iWuzyXK6R3Qpr078ZN94XXir9v9NPoGobT5GtO16qs8ZRr3o/WEQ2otfiklHBW7iTt7S2OorX8yq1KZR7JEo1iipQGrdQIunSLoybc9IOFmNZNWZXWN21V+YIrnA4mQpENxKuAopH3IDT4SCOXYrshjnwOk8jS973bH5x8f8AOJ23+fnHFXkIFZXjWT0uSxHWO5Qh5z9ZLdnVanSkluDfQai0+sBxcBCFJUWMYwg1yDWCnp/en/IXJxfCU4M4/vWprZ05tfUVTv2y1N773aKzux1FrHWIKJp+wpZswVZVOZcnpjM7RukZ25l38Q7fJqFMuD5BFMpE6OlPSH9af8hcny431/d9seDX2XqzWRVT7I2Ww8RDX+vSouE2iw3i5E2FXKmCTtVRJNqoedkmCabg6qZETnKoY5ClEwBd3Ag2GWYsifDizUMVuSyWUS2GpCGpLcjHENvtodStKXkJcWEOABaO6upHOmW2wy7KsP2A35lYnkt9jEq2zPZSjs5WP20+nkz6aXXbwSJdVLkV78d5+ulPQ4rkmG4tUeQWGvtbWEga+pHNXcXIXTc4+oPO+0Iq1Slep7O6xcKlTbxR2Vj1meacVRlsbVK1zqVVh9panGdaDBttkaqXtVB9+VYNCToGkY0He5GTrcpbLpnUPVvhePeeoyxNozjjhPfdR6hYvqPaaaGjpvYlT5k17R+bb59PwsQlE7MRu2sLXMudcFMtJwsXrdWyOWqETJwb6TopwzAAHAAAHgA8Hng/weaWpSiolSiVKUSpSlEkqJPJJJ9JJ9JPpOmMYy9VrEwe0HkH5ij/AImA3/M0k4B5lt/J2h3uq7vOVywTS+2tw3lN/VzSR4sYe+XuUsMGgY0syj3QSCUS4aDKIg3O3aPzrs2zuQQbkfuWMxuwY7s6LYLSoyYTEyMwoKISlqcuI5IBQPFFSoUfqT6nqoD+joihZTcV+L32HxnmkUeS22O3VswqO0t56fizGQRqdbclSS6w2y1k1sHWmlJS+p1ouc/Q3xu2BQD7PP8AD4mMPyAREA/t+gfcGZYxmzQ7pjGMmpr/2Q=="></div>`)[0];
+            popup_71b65843c5b741a79fc7739bfda99101.setContent(html_a7634d2ac83c4e1d9ecd1654589b2639);
+        
+
+        marker_e05208c67e4044928ab247925d12d9d4.bindPopup(popup_71b65843c5b741a79fc7739bfda99101)
+        ;
+
+        
+    
+    
+            var marker_4e2a36e55b7042e686fc077f877bc03e = L.marker(
+                [60.7429623051181, -149.20069696826172],
+                {}
+            ).addTo(feature_group_sub_group_5f2caede76a849b8ab718973638e6ef9);
+        
+    
+            var icon_e28508b960ac4f1d8c8d3987bdcd46e3 = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "blue", "prefix": "glyphicon"}
+            );
+            marker_4e2a36e55b7042e686fc077f877bc03e.setIcon(icon_e28508b960ac4f1d8c8d3987bdcd46e3);
+        
+    
+        var popup_0cb34bc2476a419287575cb1d49edbb1 = L.popup({"maxWidth": "100%"});
+
+        
+            var html_c18a54b76f83478d91fc7de4dee850af = $(`<div id="html_c18a54b76f83478d91fc7de4dee850af" style="width: 100.0%; height: 100.0%;">Cornbiscuit <br>Alan Abel <a href="https://www.cnfaic.org/observations/cornbiscuit-47/" target="_blank">Link</a><img src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQEASABIAAD/2wBDAAEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQH/2wBDAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQH/wAARCAAoACgDASIAAhEBAxEB/8QAGwABAQACAwEAAAAAAAAAAAAAAAoCCAYHCwn/xAAxEAAABgMAAAMECQUAAAAAAAABAgMEBQYABwgJETISFCGRFSMxQVFSYYKzcoGSssH/xAAZAQACAwEAAAAAAAAAAAAAAAAGCAABBAf/xAAkEQABBAEFAAIDAQAAAAAAAAABAgMEBQYABxESIQgTFBUykf/aAAwDAQACEQMRAD8Av3EQAPMR8g+AfMfIPmIgAZ17rfbOs9wwbuy6tvdW2BX2E1LVx7MVKZZTceznoNx7pLw7pyyVVI3kY5x9W6aLCRZMRKPsiUxTDz9X0fuJ/uXPMUZ9B7u5039se66N2fctYWQuwbgLiQqc04jkJJNK0y5iNJ+LMKsLYY72hETRs/HyMeoPrbjnM9w9xW9vnKF2TWrsIVq7PalFh4NSowiphqQ6wlaS0+T+QsKZcWz24SQ8jghTx/DT4YTfmHF3ZgUeaxcOybAK7FLCkFrXOzaG5VfP37EmFavxHBPrAj9VHWxYRI1iWuzyXK6R3Qpr078ZN94XXir9v9NPoGobT5GtO16qs8ZRr3o/WEQ2otfiklHBW7iTt7S2OorX8yq1KZR7JEo1iipQGrdQIunSLoybc9IOFmNZNWZXWN21V+YIrnA4mQpENxKuAopH3IDT4SCOXYrshjnwOk8jS973bH5x8f8AOJ23+fnHFXkIFZXjWT0uSxHWO5Qh5z9ZLdnVanSkluDfQai0+sBxcBCFJUWMYwg1yDWCnp/en/IXJxfCU4M4/vWprZ05tfUVTv2y1N773aKzux1FrHWIKJp+wpZswVZVOZcnpjM7RukZ25l38Q7fJqFMuD5BFMpE6OlPSH9af8hcny431/d9seDX2XqzWRVT7I2Ww8RDX+vSouE2iw3i5E2FXKmCTtVRJNqoedkmCabg6qZETnKoY5ClEwBd3Ag2GWYsifDizUMVuSyWUS2GpCGpLcjHENvtodStKXkJcWEOABaO6upHOmW2wy7KsP2A35lYnkt9jEq2zPZSjs5WP20+nkz6aXXbwSJdVLkV78d5+ulPQ4rkmG4tUeQWGvtbWEga+pHNXcXIXTc4+oPO+0Iq1Slep7O6xcKlTbxR2Vj1meacVRlsbVK1zqVVh9panGdaDBttkaqXtVB9+VYNCToGkY0He5GTrcpbLpnUPVvhePeeoyxNozjjhPfdR6hYvqPaaaGjpvYlT5k17R+bb59PwsQlE7MRu2sLXMudcFMtJwsXrdWyOWqETJwb6TopwzAAHAAAHgA8Hng/weaWpSiolSiVKUSpSlEkqJPJJJ9JJ9JPpOmMYy9VrEwe0HkH5ij/AImA3/M0k4B5lt/J2h3uq7vOVywTS+2tw3lN/VzSR4sYe+XuUsMGgY0syj3QSCUS4aDKIg3O3aPzrs2zuQQbkfuWMxuwY7s6LYLSoyYTEyMwoKISlqcuI5IBQPFFSoUfqT6nqoD+joihZTcV+L32HxnmkUeS22O3VswqO0t56fizGQRqdbclSS6w2y1k1sHWmlJS+p1ouc/Q3xu2BQD7PP8AD4mMPyAREA/t+gfcGZYxmzQ7pjGMmpr/2Q=="></div>`)[0];
+            popup_0cb34bc2476a419287575cb1d49edbb1.setContent(html_c18a54b76f83478d91fc7de4dee850af);
+        
+
+        marker_4e2a36e55b7042e686fc077f877bc03e.bindPopup(popup_0cb34bc2476a419287575cb1d49edbb1)
+        ;
+
+        
+    
+    
+            var marker_64f0550dac91417aba3c2127c030cedc = L.marker(
+                [60.7640132419633, -149.1875648729248],
+                {}
+            ).addTo(feature_group_sub_group_5f2caede76a849b8ab718973638e6ef9);
+        
+    
+            var icon_0b3092d9009543bc8c3cc3f0325999d0 = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "blue", "prefix": "glyphicon"}
+            );
+            marker_64f0550dac91417aba3c2127c030cedc.setIcon(icon_0b3092d9009543bc8c3cc3f0325999d0);
+        
+    
+        var popup_e47292ea442141479257638ac081dbab = L.popup({"maxWidth": "100%"});
+
+        
+            var html_7a1081c1c39d4bc8961208f964d58ca1 = $(`<div id="html_7a1081c1c39d4bc8961208f964d58ca1" style="width: 100.0%; height: 100.0%;">Sunburst <br>Johnston-Bloom / Roberts Forecaster<a href="https://www.cnfaic.org/observations/sunburst-234/" target="_blank">Link</a><img src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQEASABIAAD/2wBDAAEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQH/2wBDAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQH/wAARCAAoACgDASIAAhEBAxEB/8QAGwABAAIDAQEAAAAAAAAAAAAAAAgKAgkLBgf/xAAuEAAABgIBAgQDCQAAAAAAAAABAgMEBQYABwgJERIygpEUIbMTFSNScoGSssH/xAAZAQACAwEAAAAAAAAAAAAAAAAGCAABBAf/xAAkEQABBAEFAAIDAQAAAAAAAAABAgMEBQYABxESIQgTFBUykf/aAAwDAQACEQMRAD8Av7iIAHcR7B8g9x7B7iIAGfPdb7Z1nuGDd2XVt7q2wK+wmpauPZipTLKbj2c9BuPhJeHdOWSqpG8jHOPw3TRYSLJiJR8IlMUw+/V8nqJ/cucxRnyD3dx039se66N2fctYWQuwbgLiQqc04jkJJNK0y5iNJ+LMKsLYY7xCImjZ+PkY9QfO3HOZ7h7it7fOULsmtXYQrV2e1KLDwalRhFTDUh1hK0lp8n8hYUy4tntwkh5HBCnj+Gnwwm/MOLuzAo81i4dk2AV2KWFILWudm0Nyq+fv2JMK1fiOCfWBH6qOtiwiRrEtdnkuV0juhTXTvxlb7pddVfm/yafQNQ2nxGtO16qs8ZRr3kfrCIbUWvxSSjgrdxJ29pbHUVr+ZValMo9kiUaxRUoDVuoEXTpF0ZNueyDhZjWTVmV1jdtVfmCK5wOJkKRDcSrgKKR9yA0+Egjl2K7IY58DpPI0ve92x+cfH/OJ23+fnHFXkIFZXjWT0uSxHWO5Qh5z9ZLdnVanSkluDfQai0+sBxcBCFJUWMYwg1yDWCnl9af1C5W96T/BbhxbNOXXlTuHU1TvOwUN379B7Ytjmc2asV6Co99mSNnDKoSqy1QbHZM26j1xKO4V9JFUTMqm7STImkSyEp5Q/Wn9QuaiejO6QZcLJ946UBJs05CcnHLhUQMYE0G+zplZZQSkKY5gImQxhApTGEA7FKI9gELu4EGwyzFkT4cWahityWSyiWw1IQ1JbkY4ht9tDqVpS8hLiwhwALR3V1I50y22GXZVh+wG/MrE8lvsYlW2Z7KUdnKx+2n08mfTS67eCRLqpcivfjvP10p6HFckw3FqjyCw19rawkDU1+K/LLjHy2qFksPF3YcLsOoa6tKeu55eCr1mrbCAsKVagbU0h2zGzV2tqKs1qrZa9Mxj+IZrwj6KlGTiPerpKfKUWaLel9yt0HtvmB1PIbX+wC2CQ29ymrO6dZonrV1iE7jqys8O+Jurp65Qryw1uKZLxMbsCvTVXWD4krgZKOdkRbqII/bDvSwzAAHAAAHgA8Hng/weaWpSiolSiVKUSpSlEkqJPJJJ9JJ9JPpOmMYy9VrEweIOwfmKP8TAb/MhJwB4y2/idod7qu7zldsE0vtrcN5Tf1c0maM+575e5SwwaJjSrKPdlkUolw0GURBuZu0fnXZtncgi3I/csZjdgx3Z0WwWlRkwmJkZhQUQlLU5cRyQCgeKKlQo/Un1PVQH9HRFCym4r8XvsPjPNIo8ltsdurZhUdpbz0/FmMgjU625Kkl1htlrJrYOtNKSl9TrRc5+hvibRSAUe4Cf1KHMHsYwh+/bM8YzZod0xjGTU1//2Q=="></div>`)[0];
+            popup_e47292ea442141479257638ac081dbab.setContent(html_7a1081c1c39d4bc8961208f964d58ca1);
+        
+
+        marker_64f0550dac91417aba3c2127c030cedc.bindPopup(popup_e47292ea442141479257638ac081dbab)
+        ;
+
+        
+    
+    
+            var marker_456c646e673c4315b7e34b8563e97fc6 = L.marker(
+                [60.25960503321929, -149.43394774780273],
+                {}
+            ).addTo(feature_group_sub_group_5f2caede76a849b8ab718973638e6ef9);
+        
+    
+            var icon_40eebeb6d5c74cf7a46fcdfb72deff76 = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "blue", "prefix": "glyphicon"}
+            );
+            marker_456c646e673c4315b7e34b8563e97fc6.setIcon(icon_40eebeb6d5c74cf7a46fcdfb72deff76);
+        
+    
+        var popup_42ece10d376b4f48aa24e20b5458b06e = L.popup({"maxWidth": "100%"});
+
+        
+            var html_8fdc7acdd0134d83852022361687fd90 = $(`<div id="html_8fdc7acdd0134d83852022361687fd90" style="width: 100.0%; height: 100.0%;">Lost Lake Area snowfall <br>Alex McLain <a href="https://www.cnfaic.org/observations/lost-lake-area-snowfall/" target="_blank">Link</a><img src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQEASABIAAD/2wBDAAEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQH/2wBDAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQH/wAARCAAoACgDASIAAhEBAxEB/8QAGwABAQACAwEAAAAAAAAAAAAAAAoCCAYHCwn/xAAxEAAABgMAAAMECQUAAAAAAAABAgMEBQYABwgJETISFCGRFSMxQVFSYYKzcoGSssH/xAAZAQACAwEAAAAAAAAAAAAAAAAGCAABBAf/xAAkEQABBAEFAAIDAQAAAAAAAAABAgMEBQYABxESIQgTFBUykf/aAAwDAQACEQMRAD8Av3EQAPMR8g+AfMfIPmIgAZ17rfbOs9wwbuy6tvdW2BX2E1LVx7MVKZZTceznoNx7pLw7pyyVVI3kY5x9W6aLCRZMRKPsiUxTDz9X0fuJ/uXPMUZ9B7u5039se66N2fctYWQuwbgLiQqc04jkJJNK0y5iNJ+LMKsLYY72hETRs/HyMeoPrbjnM9w9xW9vnKF2TWrsIVq7PalFh4NSowiphqQ6wlaS0+T+QsKZcWz24SQ8jghTx/DT4YTfmHF3ZgUeaxcOybAK7FLCkFrXOzaG5VfP37EmFavxHBPrAj9VHWxYRI1iWuzyXK6R3Qpr078ZN94XXir9v9NPoGobT5GtO16qs8ZRr3o/WEQ2otfiklHBW7iTt7S2OorX8yq1KZR7JEo1iipQGrdQIunSLoybc9IOFmNZNWZXWN21V+YIrnA4mQpENxKuAopH3IDT4SCOXYrshjnwOk8jS973bH5x8f8AOJ23+fnHFXkIFZXjWT0uSxHWO5Qh5z9ZLdnVanSkluDfQai0+sBxcBCFJUWMYwg1yDWCnp/en/IXJxfCU4M4/vWprZ05tfUVTv2y1N773aKzux1FrHWIKJp+wpZswVZVOZcnpjM7RukZ25l38Q7fJqFMuD5BFMpE6OlPSH9af8hcny431/d9seDX2XqzWRVT7I2Ww8RDX+vSouE2iw3i5E2FXKmCTtVRJNqoedkmCabg6qZETnKoY5ClEwBd3Ag2GWYsifDizUMVuSyWUS2GpCGpLcjHENvtodStKXkJcWEOABaO6upHOmW2wy7KsP2A35lYnkt9jEq2zPZSjs5WP20+nkz6aXXbwSJdVLkV78d5+ulPQ4rkmG4tUeQWGvtbWEga+pHNXcXIXTc4+oPO+0Iq1Slep7O6xcKlTbxR2Vj1meacVRlsbVK1zqVVh9panGdaDBttkaqXtVB9+VYNCToGkY0He5GTrcpbLpnUPVvhePeeoyxNozjjhPfdR6hYvqPaaaGjpvYlT5k17R+bb59PwsQlE7MRu2sLXMudcFMtJwsXrdWyOWqETJwb6TopwzAAHAAAHgA8Hng/weaWpSiolSiVKUSpSlEkqJPJJJ9JJ9JPpOmMYy9VrEwe0HkH5ij/AImA3/M0k4B5lt/J2h3uq7vOVywTS+2tw3lN/VzSR4sYe+XuUsMGgY0syj3QSCUS4aDKIg3O3aPzrs2zuQQbkfuWMxuwY7s6LYLSoyYTEyMwoKISlqcuI5IBQPFFSoUfqT6nqoD+joihZTcV+L32HxnmkUeS22O3VswqO0t56fizGQRqdbclSS6w2y1k1sHWmlJS+p1ouc/Q3xu2BQD7PP8AD4mMPyAREA/t+gfcGZYxmzQ7pjGMmpr/2Q=="></div>`)[0];
+            popup_42ece10d376b4f48aa24e20b5458b06e.setContent(html_8fdc7acdd0134d83852022361687fd90);
+        
+
+        marker_456c646e673c4315b7e34b8563e97fc6.bindPopup(popup_42ece10d376b4f48aa24e20b5458b06e)
+        ;
+
+        
+    
+    
+            var marker_ce4e58e79b3243f4b2246257a2710e17 = L.marker(
+                [60.6373955274091, -149.48887428564453],
+                {}
+            ).addTo(feature_group_sub_group_5f2caede76a849b8ab718973638e6ef9);
+        
+    
+            var icon_4a0d9bed04a7473ab60820a970d56851 = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "blue", "prefix": "glyphicon"}
+            );
+            marker_ce4e58e79b3243f4b2246257a2710e17.setIcon(icon_4a0d9bed04a7473ab60820a970d56851);
+        
+    
+        var popup_896c5b34721a41cebad24c9c96dd1f65 = L.popup({"maxWidth": "100%"});
+
+        
+            var html_ed53ee8bc2ba468dbe6f9f7bf9b1237c = $(`<div id="html_ed53ee8bc2ba468dbe6f9f7bf9b1237c" style="width: 100.0%; height: 100.0%;">Tenderfoot <br>Nick D'Alessio <a href="https://www.cnfaic.org/observations/tenderfoot-83/" target="_blank">Link</a><img src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQEASABIAAD/2wBDAAEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQH/2wBDAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQH/wAARCAAoACgDASIAAhEBAxEB/8QAGwABAQACAwEAAAAAAAAAAAAAAAoCCAYHCwn/xAAxEAAABgMAAAMECQUAAAAAAAABAgMEBQYABwgJETISFCGRFSMxQVFSYYKzcoGSssH/xAAZAQACAwEAAAAAAAAAAAAAAAAGCAABBAf/xAAkEQABBAEFAAIDAQAAAAAAAAABAgMEBQYABxESIQgTFBUykf/aAAwDAQACEQMRAD8Av3EQAPMR8g+AfMfIPmIgAZ17rfbOs9wwbuy6tvdW2BX2E1LVx7MVKZZTceznoNx7pLw7pyyVVI3kY5x9W6aLCRZMRKPsiUxTDz9X0fuJ/uXPMUZ9B7u5039se66N2fctYWQuwbgLiQqc04jkJJNK0y5iNJ+LMKsLYY72hETRs/HyMeoPrbjnM9w9xW9vnKF2TWrsIVq7PalFh4NSowiphqQ6wlaS0+T+QsKZcWz24SQ8jghTx/DT4YTfmHF3ZgUeaxcOybAK7FLCkFrXOzaG5VfP37EmFavxHBPrAj9VHWxYRI1iWuzyXK6R3Qpr078ZN94XXir9v9NPoGobT5GtO16qs8ZRr3o/WEQ2otfiklHBW7iTt7S2OorX8yq1KZR7JEo1iipQGrdQIunSLoybc9IOFmNZNWZXWN21V+YIrnA4mQpENxKuAopH3IDT4SCOXYrshjnwOk8jS973bH5x8f8AOJ23+fnHFXkIFZXjWT0uSxHWO5Qh5z9ZLdnVanSkluDfQai0+sBxcBCFJUWMYwg1yDWCnp/en/IXJxfCU4M4/vWprZ05tfUVTv2y1N773aKzux1FrHWIKJp+wpZswVZVOZcnpjM7RukZ25l38Q7fJqFMuD5BFMpE6OlPSH9af8hcny431/d9seDX2XqzWRVT7I2Ww8RDX+vSouE2iw3i5E2FXKmCTtVRJNqoedkmCabg6qZETnKoY5ClEwBd3Ag2GWYsifDizUMVuSyWUS2GpCGpLcjHENvtodStKXkJcWEOABaO6upHOmW2wy7KsP2A35lYnkt9jEq2zPZSjs5WP20+nkz6aXXbwSJdVLkV78d5+ulPQ4rkmG4tUeQWGvtbWEga+pHNXcXIXTc4+oPO+0Iq1Slep7O6xcKlTbxR2Vj1meacVRlsbVK1zqVVh9panGdaDBttkaqXtVB9+VYNCToGkY0He5GTrcpbLpnUPVvhePeeoyxNozjjhPfdR6hYvqPaaaGjpvYlT5k17R+bb59PwsQlE7MRu2sLXMudcFMtJwsXrdWyOWqETJwb6TopwzAAHAAAHgA8Hng/weaWpSiolSiVKUSpSlEkqJPJJJ9JJ9JPpOmMYy9VrEwe0HkH5ij/AImA3/M0k4B5lt/J2h3uq7vOVywTS+2tw3lN/VzSR4sYe+XuUsMGgY0syj3QSCUS4aDKIg3O3aPzrs2zuQQbkfuWMxuwY7s6LYLSoyYTEyMwoKISlqcuI5IBQPFFSoUfqT6nqoD+joihZTcV+L32HxnmkUeS22O3VswqO0t56fizGQRqdbclSS6w2y1k1sHWmlJS+p1ouc/Q3xu2BQD7PP8AD4mMPyAREA/t+gfcGZYxmzQ7pjGMmpr/2Q=="></div>`)[0];
+            popup_896c5b34721a41cebad24c9c96dd1f65.setContent(html_ed53ee8bc2ba468dbe6f9f7bf9b1237c);
+        
+
+        marker_ce4e58e79b3243f4b2246257a2710e17.bindPopup(popup_896c5b34721a41cebad24c9c96dd1f65)
+        ;
+
+        
+    
+    
+            var marker_99943a09f4cc4e00a80a65373337c87b = L.marker(
+                [60.8218112097806, -149.1909122697754],
+                {}
+            ).addTo(feature_group_sub_group_5f2caede76a849b8ab718973638e6ef9);
+        
+    
+            var icon_7e496341b6fd47378a5190327810d97c = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "blue", "prefix": "glyphicon"}
+            );
+            marker_99943a09f4cc4e00a80a65373337c87b.setIcon(icon_7e496341b6fd47378a5190327810d97c);
+        
+    
+        var popup_1b0187d122d7435ab447c1d3b8a3899d = L.popup({"maxWidth": "100%"});
+
+        
+            var html_04521badda60459190e626ebdd9015e7 = $(`<div id="html_04521badda60459190e626ebdd9015e7" style="width: 100.0%; height: 100.0%;">Seattle Ridge <br>J Davis <a href="https://www.cnfaic.org/observations/seattle-ridge-114/" target="_blank">Link</a><img src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQEASABIAAD/2wBDAAEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQH/2wBDAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQH/wAARCAAoACgDASIAAhEBAxEB/8QAGwABAQACAwEAAAAAAAAAAAAAAAoCCAYHCwn/xAAxEAAABgMAAAMECQUAAAAAAAABAgMEBQYABwgJETISFCGRFSMxQVFSYYKzcoGSssH/xAAZAQACAwEAAAAAAAAAAAAAAAAGCAABBAf/xAAkEQABBAEFAAIDAQAAAAAAAAABAgMEBQYABxESIQgTFBUykf/aAAwDAQACEQMRAD8Av3EQAPMR8g+AfMfIPmIgAZ17rfbOs9wwbuy6tvdW2BX2E1LVx7MVKZZTceznoNx7pLw7pyyVVI3kY5x9W6aLCRZMRKPsiUxTDz9X0fuJ/uXPMUZ9B7u5039se66N2fctYWQuwbgLiQqc04jkJJNK0y5iNJ+LMKsLYY72hETRs/HyMeoPrbjnM9w9xW9vnKF2TWrsIVq7PalFh4NSowiphqQ6wlaS0+T+QsKZcWz24SQ8jghTx/DT4YTfmHF3ZgUeaxcOybAK7FLCkFrXOzaG5VfP37EmFavxHBPrAj9VHWxYRI1iWuzyXK6R3Qpr078ZN94XXir9v9NPoGobT5GtO16qs8ZRr3o/WEQ2otfiklHBW7iTt7S2OorX8yq1KZR7JEo1iipQGrdQIunSLoybc9IOFmNZNWZXWN21V+YIrnA4mQpENxKuAopH3IDT4SCOXYrshjnwOk8jS973bH5x8f8AOJ23+fnHFXkIFZXjWT0uSxHWO5Qh5z9ZLdnVanSkluDfQai0+sBxcBCFJUWMYwg1yDWCnp/en/IXJxfCU4M4/vWprZ05tfUVTv2y1N773aKzux1FrHWIKJp+wpZswVZVOZcnpjM7RukZ25l38Q7fJqFMuD5BFMpE6OlPSH9af8hcny431/d9seDX2XqzWRVT7I2Ww8RDX+vSouE2iw3i5E2FXKmCTtVRJNqoedkmCabg6qZETnKoY5ClEwBd3Ag2GWYsifDizUMVuSyWUS2GpCGpLcjHENvtodStKXkJcWEOABaO6upHOmW2wy7KsP2A35lYnkt9jEq2zPZSjs5WP20+nkz6aXXbwSJdVLkV78d5+ulPQ4rkmG4tUeQWGvtbWEga+pHNXcXIXTc4+oPO+0Iq1Slep7O6xcKlTbxR2Vj1meacVRlsbVK1zqVVh9panGdaDBttkaqXtVB9+VYNCToGkY0He5GTrcpbLpnUPVvhePeeoyxNozjjhPfdR6hYvqPaaaGjpvYlT5k17R+bb59PwsQlE7MRu2sLXMudcFMtJwsXrdWyOWqETJwb6TopwzAAHAAAHgA8Hng/weaWpSiolSiVKUSpSlEkqJPJJJ9JJ9JPpOmMYy9VrEwe0HkH5ij/AImA3/M0k4B5lt/J2h3uq7vOVywTS+2tw3lN/VzSR4sYe+XuUsMGgY0syj3QSCUS4aDKIg3O3aPzrs2zuQQbkfuWMxuwY7s6LYLSoyYTEyMwoKISlqcuI5IBQPFFSoUfqT6nqoD+joihZTcV+L32HxnmkUeS22O3VswqO0t56fizGQRqdbclSS6w2y1k1sHWmlJS+p1ouc/Q3xu2BQD7PP8AD4mMPyAREA/t+gfcGZYxmzQ7pjGMmpr/2Q=="></div>`)[0];
+            popup_1b0187d122d7435ab447c1d3b8a3899d.setContent(html_04521badda60459190e626ebdd9015e7);
+        
+
+        marker_99943a09f4cc4e00a80a65373337c87b.bindPopup(popup_1b0187d122d7435ab447c1d3b8a3899d)
+        ;
+
+        
+    
+    
+            var layer_control_c2c7161d2adf4bc39f11ce1ced107c5d = {
+                base_layers : {
+                    "http://server.arcgisonline.com/arcgis/rest/services/natgeo_world_map/mapserver/tile/{z}/{y}/{x}" : tile_layer_4e9283fb41874423b0cd7ecd6901ed11,
+                },
+                overlays :  {
+                    "Observations" : feature_group_eca6d8dcd33f4b1eb697ce3578cd867a,
+                    "Yesterday" : feature_group_sub_group_abd2bbbe80654aad8d22dd4aebd3d48e,
+                    "3 Days" : feature_group_sub_group_594d3da011ca4297b37be8e2e931d825,
+                    "One Week" : feature_group_sub_group_5f2caede76a849b8ab718973638e6ef9,
+                },
+            };
+            L.control.layers(
+                layer_control_c2c7161d2adf4bc39f11ce1ced107c5d.base_layers,
+                layer_control_c2c7161d2adf4bc39f11ce1ced107c5d.overlays,
+                {"autoZIndex": true, "collapsed": true, "position": "topright"}
+            ).addTo(map_16593118688842649b644627e00710cb);
+        
+</script>
